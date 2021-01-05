@@ -39,6 +39,13 @@ class Uno:
         # Give each player 7 cards
         for i in range(len(self.players)):
             self.give_player_card(playerindex=i, num_of_cards=7)
+        
+        # Display uppermost card
+        while self.deck[0][1:3] in self.special_cards_with_colour or self.deck[0] in self.special_cards_without_colour:
+            self.deck.insert(-1, self.deck.pop(0))
+            print("test")
+        else:
+            print("uppermost card: " + self.deck[0])
 
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
@@ -63,3 +70,7 @@ class Uno:
         """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
         for i in range(num_of_cards):
             self.players[playerindex].deck.append(self.deck.pop(-1))
+
+uno = Uno()
+print(uno.deck)
+print(len(uno.deck))
