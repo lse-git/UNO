@@ -47,6 +47,10 @@ class Uno:
         else:
             print("uppermost card: " + self.deck[0])
 
+        # Choose random starting player
+        self.start_player_index = random.randint(0, self.player_quantaty - 1)
+        print("starting player: " + str(self.start_player_index))        # Choose random player index
+
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
 
