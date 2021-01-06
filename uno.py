@@ -28,6 +28,9 @@ class Uno:
                 for i in range(2):
                     self.deck.append(self.create_card(col=self.colour, special=self.card_types))
 
+        # shuffle deck
+        self.shuffle_deck()
+
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
 
