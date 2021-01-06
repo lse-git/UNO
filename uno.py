@@ -37,6 +37,10 @@ class Uno:
         for self.player in range(self.player_quantaty):
             self.players.append(Uno.Player())                             # Create Players
 
+        # Give each player 7 cards
+        for i in range(len(self.players)):
+            self.give_player_card(playerindex=i, num_of_cards=7)
+
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
 
