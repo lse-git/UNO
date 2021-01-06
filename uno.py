@@ -31,6 +31,12 @@ class Uno:
         # shuffle deck
         self.shuffle_deck()
 
+        # Create Players
+        self.player_quantaty = int(input("How many players "))          # Asks after player number
+        self.players = []
+        for self.player in range(self.player_quantaty):
+            self.players.append(Uno.Player())                             # Create Players
+
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
 
