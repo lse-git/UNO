@@ -1,4 +1,4 @@
-import random:
+import random
 
 class Uno:
     class Player():
@@ -65,3 +65,13 @@ class Uno:
             else:
                 card = special
         return(card)
+
+    def shuffle_deck(self):
+        """Shuffles the Deck"""
+        random.shuffle(self.deck)
+    
+    def give_player_card(self, playerindex, num_of_cards=1):
+        """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
+        for i in range(num_of_cards):
+            self.players[playerindex].deck.append(self.deck.pop(-1))
+s
