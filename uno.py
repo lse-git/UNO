@@ -41,11 +41,8 @@ class Uno:
         for i in range(len(self.players)):
             self.give_player_card(playerindex=i, num_of_cards=7)
 
-        # Display uppermost card
-        while self.deck[0][1:3] in self.special_cards_with_colour or self.deck[0] in self.special_cards_without_colour:
-            self.deck.insert(-1, self.deck.pop(0))
-        else:
-            print("uppermost card: " + self.deck[0])
+        # Make opencard list
+        self.opendeck = []
 
         # Choose random starting player
         self.start_player_index = random.randint(0, self.player_quantaty - 1)
