@@ -9,8 +9,8 @@ class Uno:
         # Create Deck
         self.deck = []
         self.colours = ["b", "g", "r", "y"]
-        self.special_cards_with_colour = ["+2", "rt", "sp"]         # +2 = draw 2, rt = retour, sp = suspend
-        self.special_cards_without_colour = ["+4", "chc"]           # +4 = draw 4, chc = choose color
+        self.special_cards_with_colour = ["t", "r", "s"]         # t = draw two, r = reverse, s = suspend
+        self.special_cards_without_colour = ["f", "c"]           # f = draw four, c = choose color      (n = none)
         # add normal cards
         for i in range(0, 10):
             for self.colour in self.colours:
@@ -63,7 +63,7 @@ class Uno:
             if col != None and special != None:
                 card = col + special
             else:
-                card = special
+                card = "n" + special
         return(card)
 
     def shuffle_deck(self):
