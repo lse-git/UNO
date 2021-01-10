@@ -43,6 +43,7 @@ class Uno:
 
         # Make opencard list
         self.opendeck = []
+        self.opendeck.append(self.deck.pop(0))
 
         # Choose random starting player
         self.start_player_index = random.randint(0, self.player_quantaty - 1)
