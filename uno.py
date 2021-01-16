@@ -10,7 +10,7 @@ class Uno:
         self.deck = []
         self.colours = ["b", "g", "r", "y"]
         self.special_cards_without_colour = ["f", "c"]           # f = draw four, c = choose color      (n = none)
-        self.special_cards_with_colour = ["t", "r", "s"]         # t = draw two, r = reverse, s = suspend
+        self.special_cards_with_colour = ["t", "v", "s"]         # t = draw two, v = reverse, s = suspend
         # add normal cards
         for i in range(0, 10):
             for self.colour in self.colours:
