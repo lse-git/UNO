@@ -38,8 +38,8 @@ class Uno:
             self.players.append(Uno.Player())                             # Create Players
 
         # Give each player 7 cards
-        for i in range(len(self.players)):
-            self.give_player_card(playerindex=i, num_of_cards=7)
+        for i in self.players:
+            give_player_card(i, 7)
 
         # Make opencard list
         self.opendeck = []
@@ -68,7 +68,7 @@ class Uno:
         """Shuffles the Deck"""
         random.shuffle(self.deck)
     
-    def give_player_card(self, playerindex, num_of_cards=1):
+    def give_player_card(self, playerobj, num_of_cards=1):
         """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
         for i in range(num_of_cards):
-            self.players[playerindex].deck.append(self.deck.pop(-1))
+            self.playerobj.deck.append(self.deck.pop(-1))
