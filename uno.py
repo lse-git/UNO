@@ -39,7 +39,7 @@ class Uno:
 
         # Give each player 7 cards
         for i in self.players:
-            give_player_card(i, 7)
+            self.give_player_card(i, 7)
 
         # Make opencard list
         self.opendeck = []
