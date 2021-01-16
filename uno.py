@@ -71,4 +71,4 @@ class Uno:
     def give_player_card(self, playerobj, num_of_cards=1):
         """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
         for i in range(num_of_cards):
-            self.playerobj.deck.append(self.deck.pop(-1))
+            playerobj.deck.append(self.deck.pop(-1))
