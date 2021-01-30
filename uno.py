@@ -88,3 +88,13 @@ class Uno:
         """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
         for i in range(num_of_cards):
             playerobj.deck.append(self.deck.pop(-1))
+    
+    def print_cards(self, playerobj):
+        print("TEMP Deck - Open deck: {}".format(self.opendeck))
+        print("TEMP Card count - Open deck: {}".format(len(self.opendeck)))
+
+        print("TEMP Deck - Closed deck: {}".format(self.deck))
+        print("TEMP Card count - Closed deck: {}".format(len(self.deck)))
+
+        print("TEMP Deck - Player {}: {}".format(self.players.index(playerobj),playerobj.deck))
+        print("TEMP Card count - Player: {}".format(len(playerobj.deck)))
