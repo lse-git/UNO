@@ -11,4 +11,3 @@ if __name__ == "__main__":
             # let player choose which card to play
             game.play_card(player)
             game.print_cards(player)
-            input()

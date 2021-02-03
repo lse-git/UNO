@@ -21,16 +21,16 @@ class Uno:
                 elif i in range(1, 10):
                     for j in range(2):
                         self.deck.append(self.create_card(i, self.colour))
-        # add special cards
-        for self.card_types in self.special_cards_without_colour:
-            for i in range(4):
-                self.deck.append(self.create_card(special=self.card_types))
-        for self.card_types in self.special_cards_with_colour:
-            for self.colour in self.colours:
-                for i in range(2):
-                    self.deck.append(self.create_card(col=self.colour, special=self.card_types))
-        print("TEMP Deck - Original: {}".format(self.deck))
-        print("TEMP Card count - Original: {}".format(len(self.deck)))
+        # # add special cards
+        # for self.card_types in self.special_cards_without_colour:
+        #     for i in range(4):
+        #         self.deck.append(self.create_card(special=self.card_types))
+        # for self.card_types in self.special_cards_with_colour:
+        #     for self.colour in self.colours:
+        #         for i in range(2):
+        #             self.deck.append(self.create_card(col=self.colour, special=self.card_types))
+        # print("TEMP Deck - Original: {}".format(self.deck))
+        # print("TEMP Card count - Original: {}".format(len(self.deck)))
 
         # shuffle deck
         self.shuffle_deck()
@@ -92,8 +92,27 @@ class Uno:
             playerobj.deck.append(self.deck.pop(-1))
     
     def play_card(self, playerobj):
-        pc_index = input(self.colgreen + "Deck Player {}, what card between 1 and {} do you want to play? " + self.colreset.format(self.players.index(playerobj), len(playerobj.deck)))
-        self.opendeck.append(playerobj.deck.pop(int(pc_index)-1))
+        self.is_playable = False
+        while self.is_playable == False:
+            pc_index = int(input(self.colgreen + "Deck Player {}, what card between 1 and {} do you want to play? {}".format(self.players.index(playerobj), len(playerobj.deck), self.colreset)))
+            self.upper_open = self.opendeck[-1]
+            self.card_to_play = playerobj.deck[pc_index]
+            if self.check_if_valid(self.upper_open, self.card_to_play) == True:
+                print('ok')
+                self.opendeck.append(self.card_to_play)
+                playerobj.deck.pop(pc_index)
+                self.is_playable = True
+            else:
+                print('nope.')
+                self.give_player_card(playerobj)
+                self.is_playable = False
+                self.print_cards(playerobj)
+
+    def check_if_valid(self, card1, card2):
+        if (card1[0] == card2[0]) or (card1[1] == card2[1]):
+            return True
+        else:
+            return False
 
     def print_cards(self, playerobj):
         print("TEMP Deck - Open deck: {}".format(self.opendeck))
