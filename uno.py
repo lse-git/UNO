@@ -7,6 +7,8 @@ class Uno:
 
     def __init__(self):
         # Create Deck
+        self.colgreen = '\033[32m'
+        self.colreset = '\033[m'
         self.deck = []
         self.colours = ["b", "g", "r", "y"]
         self.special_cards_without_colour = ["f", "c"]           # f = draw four, c = choose color      (n = none)
@@ -19,16 +21,16 @@ class Uno:
                 elif i in range(1, 10):
                     for j in range(2):
                         self.deck.append(self.create_card(i, self.colour))
-        # add special cards
-        for self.card_types in self.special_cards_without_colour:
-            for i in range(4):
-                self.deck.append(self.create_card(special=self.card_types))
-        for self.card_types in self.special_cards_with_colour:
-            for self.colour in self.colours:
-                for i in range(2):
-                    self.deck.append(self.create_card(col=self.colour, special=self.card_types))
-        print("TEMP Deck - Original: {}".format(self.deck))
-        print("TEMP Card count - Original: {}".format(len(self.deck)))
+        # # add special cards
+        # for self.card_types in self.special_cards_without_colour:
+        #     for i in range(4):
+        #         self.deck.append(self.create_card(special=self.card_types))
+        # for self.card_types in self.special_cards_with_colour:
+        #     for self.colour in self.colours:
+        #         for i in range(2):
+        #             self.deck.append(self.create_card(col=self.colour, special=self.card_types))
+        # print("TEMP Deck - Original: {}".format(self.deck))
+        # print("TEMP Card count - Original: {}".format(len(self.deck)))
 
         # shuffle deck
         self.shuffle_deck()
@@ -36,7 +38,7 @@ class Uno:
         print("TEMP Card count - Shuffle: {}".format(len(self.deck)))
 
         # Create Players
-        self.player_quantaty = int(input("How many players "))          # Asks after player number
+        self.player_quantaty = int(input(self.colgreen + "How many players " + self.colreset))          # Asks after player number
         self.players = []
         for self.player in range(self.player_quantaty):
             self.players.append(Uno.Player())                             # Create Players
@@ -88,3 +90,36 @@ class Uno:
         """Give player in self.players with index playerindex num_of_cards cards from closed deck"""
         for i in range(num_of_cards):
             playerobj.deck.append(self.deck.pop(-1))
+    
+    def play_card(self, playerobj):
+        self.is_playable = False
+        while self.is_playable == False:
+            pc_index = int(input(self.colgreen + "Deck Player {}, what card between 1 and {} do you want to play? {}".format(self.players.index(playerobj), len(playerobj.deck), self.colreset)))
+            self.upper_open = self.opendeck[-1]
+            self.card_to_play = playerobj.deck[pc_index]
+            if self.check_if_valid(self.upper_open, self.card_to_play) == True:
+                print('ok')
+                self.opendeck.append(self.card_to_play)
+                playerobj.deck.pop(pc_index)
+                self.is_playable = True
+            else:
+                print('nope.')
+                self.give_player_card(playerobj)
+                self.is_playable = False
+                self.print_cards(playerobj)
+
+    def check_if_valid(self, card1, card2):
+        if (card1[0] == card2[0]) or (card1[1] == card2[1]):
+            return True
+        else:
+            return False
+
+    def print_cards(self, playerobj):
+        print("TEMP Deck - Open deck: {}".format(self.opendeck))
+        print("TEMP Card count - Open deck: {}".format(len(self.opendeck)))
+
+        print("TEMP Deck - Closed deck: {}".format(self.deck))
+        print("TEMP Card count - Closed deck: {}".format(len(self.deck)))
+
+        print("TEMP Deck - Player {}: {}".format(self.players.index(playerobj),playerobj.deck))
+        print("TEMP Card count - Player: {}".format(len(playerobj.deck)))
