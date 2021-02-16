@@ -1,4 +1,5 @@
 import random
+import col_text
 
 class Uno:
     class Player():
@@ -7,8 +8,6 @@ class Uno:
 
     def __init__(self):
         # Create Deck
-        self.colgreen = '\033[32m'
-        self.colreset = '\033[m'
         self.deck = []
         self.colours = ["b", "g", "r", "y"]
         self.special_cards_without_colour = ["f", "c"]           # f = draw four, c = choose color      (n = none)
@@ -38,7 +37,7 @@ class Uno:
         print("TEMP Card count - Shuffle: {}".format(len(self.deck)))
 
         # Create Players
-        self.player_quantaty = int(input(self.colgreen + "How many players " + self.colreset))          # Asks after player number
+        self.player_quantaty = int(input("How many players "))          # Asks after player number  #IMORTANT GREEN
         self.players = []
         for self.player in range(self.player_quantaty):
             self.players.append(Uno.Player())                             # Create Players
