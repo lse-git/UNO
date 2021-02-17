@@ -37,7 +37,7 @@ class Uno:
         print("TEMP Card count - Shuffle: {}".format(len(self.deck)))
 
         # Create Players
-        self.player_quantaty = int(input("How many players "))          # Asks after player number  #IMORTANT GREEN
+        self.player_quantaty = int(col_text.green_input("How many players "))          # Asks after player number
         self.players = []
         for self.player in range(self.player_quantaty):
             self.players.append(Uno.Player())                             # Create Players
@@ -65,7 +65,7 @@ class Uno:
 
         # Choose random starting player
         self.start_player_index = random.randint(0, self.player_quantaty - 1)
-        print("starting player: " + str(self.start_player_index))        # Choose random player index
+        col_text.green_print("starting player: " + str(self.start_player_index))        # Choose random player index
 
     def create_card(self, num=None, col=None, special=None):
         """Returns new Card (as string)
@@ -93,7 +93,7 @@ class Uno:
     def play_card(self, playerobj):
         self.is_playable = False
         while self.is_playable == False:
-            pc_index = int(input(self.colgreen + "Deck Player {}, what card between 1 and {} do you want to play? {}".format(self.players.index(playerobj), len(playerobj.deck), self.colreset)))
+            pc_index = int(col_text.green_input("Deck Player {}, what card between 1 and {} do you want to play?".format(self.players.index(playerobj), len(playerobj.deck))))
             self.upper_open = self.opendeck[-1]
             self.card_to_play = playerobj.deck[pc_index]
             if self.check_if_valid(self.upper_open, self.card_to_play) == True:
